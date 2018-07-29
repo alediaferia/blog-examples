@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 
 /**
@@ -46,7 +45,6 @@ const config = (env) => {
         {
           test: /\.(scss|css)$/,
           use: [
-            MiniCssExtractPlugin.loader,
             'css-loader',
             'sass-loader',
           ],
@@ -71,7 +69,6 @@ const config = (env) => {
         filename: `${env.entry}.html`,
         chunks: [env.entry],
       }),
-      new MiniCssExtractPlugin(),
       new HTMLInlineCSSWebpackPlugin(),
 
       // the DefinePlugin helps us defining a const
